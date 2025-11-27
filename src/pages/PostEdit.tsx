@@ -73,11 +73,10 @@
 //     </div>
 //   )
 // }
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getPost, updatePost } from "../services/postService";
-import toast from "react-hot-toast"; // ✅ import toast
+import toast from "react-hot-toast";
 
 export default function PostEdit() {
   const { id } = useParams();
@@ -86,18 +85,19 @@ export default function PostEdit() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (id) {
-      getPost(id)
-        .then((res) => {
-          setTitle(res.data.title);
-          setBody(res.data.body);
-        })
-        //toast
-        .catch(() => toast.error("Failed to fetch post data"));
+    if (!id) {
+      toast.error("Invalid Post ID");
+      return;
     }
+
+    getPost(id)
+      .then((res) => {
+        setTitle(res.data.title);
+        setBody(res.data.body);
+      })
+      .catch(() => toast.error("Failed to fetch post data"));
   }, [id]);
 
-  //toast
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -106,6 +106,12 @@ export default function PostEdit() {
       return;
     }
 
+    if (!id) {
+      toast.error("Invalid Post ID.");
+      return;
+    }
+
+    // FIXED: id is guaranteed string here
     const promise = updatePost(id, { title, body });
 
     toast.promise(promise, {
@@ -120,6 +126,7 @@ export default function PostEdit() {
   return (
     <div>
       <h1 className="font-bold text-4xl">Edit Post</h1>
+
       <div className="absolute mb-4">
         <Link
           to="/list"
@@ -147,7 +154,7 @@ export default function PostEdit() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Post Title"
-            className="w-full mt-8 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:right-0.5"
+            className="w-full mt-8 px-4 py-2 border border-gray-300 rounded focus:outline-none"
           />
         </div>
 
@@ -164,7 +171,7 @@ export default function PostEdit() {
             value={body}
             onChange={(e) => setBody(e.target.value)}
             placeholder="Enter Post Body"
-            className="w-full mt-8 px-6 py-2 border border-gray-300 rounded focus:outline-none focus:right-0.5"
+            className="w-full mt-8 px-6 py-2 border border-gray-300 rounded focus:outline-none"
           />
         </div>
 
