@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type {Post} from '../types/Post';
 
-const App_URL = 'http://127.0.0.1:8000/api';
+const APP_URL = 'http://127.0.0.1:8000/api';
+// const App_URL = 'https://journalnow.kesug.com/api';
 
 export const getPosts = () => axios.get<Post[]>(App_URL + "/post");
 export const createPost = (post: Omit<Post, 'id'>) => axios.post<Post>(App_URL + "/post", post);
