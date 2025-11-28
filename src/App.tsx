@@ -21,21 +21,21 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         
         {/* check if naka login ba or hindi */}
-        {isAuthenticated && (
-          <>
-            <Route path="/list" element={<PostList />}></Route>
+        {/* {isAuthenticated && (
+          <> */}
+            <Route path="/" element={<PostList />}></Route>
             <Route path="/create" element={<PostCreate />}></Route>
             <Route path="/edit/:id" element={<PostEdit />}></Route>
             <Route path="/view/:id" element={<PostView />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
-          </>
-        )}
-      </Routes>
+          {/* </>
+        )}*/}
+      </Routes> 
       {/* <PostList /> */}
       {/* ✅ This must exist somewhere visible */}
       <Toaster position="top-right" reverseOrder={false} />
