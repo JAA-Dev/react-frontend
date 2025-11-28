@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import PostList from "./pages/PostList.tsx";
 import PostCreate from "./pages/PostCreate.tsx";
