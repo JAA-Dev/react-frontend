@@ -9,15 +9,15 @@ import Register from "./pages/Auth/Register.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import Dashboard from "./pages/Auth/Dashboard.tsx";
 import Profile from "./pages/Auth/Profile.tsx";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const location = useLocation();
-  useEffect(() => {
-    const auth = localStorage.getItem("isAuthenticated");
-    setIsAuthenticated(auth === "true");
-  }, [location]);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const location = useLocation();
+  // useEffect(() => {
+  //   const auth = localStorage.getItem("isAuthenticated");
+  //   setIsAuthenticated(auth === "true");
+  // }, [location]);
   return (
     <>
       <Routes>
